@@ -4,7 +4,7 @@ import models.KeySet
 private val upperList = ('A'..'Z').toList()
 private val lowerList = ('a'..'z').toList()
 private val numberList = ('0'..'9').toList()
-private val symbols = listOf('!', '@', '#', '$', '%', '^', '&', '*')
+private val symbols = listOf('@', '#', '^', '&', '*')
 
 private val chars = upperList + lowerList + numberList + symbols
 
