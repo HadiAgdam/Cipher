@@ -1,76 +1,73 @@
 # Acrypt
 
-This Kotlin program provides a simple encryption and decryption algorithm that uses a password and a set of keys. The program can also optionally hide the length of the encrypted text to add an additional layer of security.
+Acrypt is a command-line tool for encrypting and decrypting text using passwords and sets of keys. It also provides an option to hide the length of the text.
 
-## Overview
 
-The program encrypts and decrypts text using a combination of a password and a key set. The encryption process involves shifting characters based on the values derived from the password, key set, and text length. The program supports both command-line execution and interactive mode.
+### Encrypt Function
+
+The `encrypt` function transforms the input text into an encrypted form using the provided password and key set. Here’s a breakdown of how it works:
+
+1. **Padding**: If the `hideLength` argument is set to `1`, the function pads the text with `*` characters until its length is a power of 2. This is done to obscure the original length of the text.
+2. **Encryption**: Each character in the text is replaced based on its position, the password, and the key set. The character's index in the `chars` list is incremented by the sum of:
+    - The password value for the current position.
+    - The key value for the current position.
+    - The length of the text.
+
+   This transformation is applied to each character in the text.
+
+### Hide Length Function
+
+The `hideLength` option is used during encryption to obscure the length of the text. When `hideLength` is set to `1`:
+- The text is padded with `*` characters until its length becomes a power of 2.
+- This padding helps to prevent revealing the length of the original text, adding an extra layer of obfuscation.
+
+When `hideLength` is set to `0` or not provided, the text is encrypted without any padding, and the length remains visible.
+
+
 
 ## Features
 
-- **Encryption/Decryption**: Encrypts and decrypts text using a password and a key set.
-- **Hide Length**: Optionally hides the length of the text in the encrypted output.
-- **Interactive Mode**: If no valid command-line arguments are provided, the program will enter an interactive mode, prompting the user for inputs.
+- **Encryption**: Encrypt text using a password and a set of keys.
+- **Decryption**: Decrypt text using the same password and set of keys.
+- **Hide Length**: Optionally hide the length of the text during encryption.
+
+## Prerequisites
+
+- Java Runtime Environment (JRE) 8 or later.
+
+## Download
+
+Download the latest release of `acrypt.jar` from the [releases](link-to-your-release) section.
 
 ## Usage
 
-### Command-Line Execution
-
-You can run the program directly from the command line with the following syntax:
+To use Acrypt, run the JAR file with the required arguments. Open a terminal or command prompt and use the following syntax:
 
 ```bash
-java -jar acrypt.jar <command> <password> <key_set> <text> <hide_length>
+java -jar acrypt.jar <command> <password> <keySet> <text> [hideLength]
 ```
 
-- `<command>`: The operation to perform. Use `e` for encryption and `d` for decryption.
-- `<password>`: The password to use for encryption/decryption. The password must adhere to the expected format.
-- `<key_set>`: The key set to use for encryption/decryption, in the format of `1-23 4-78-91`.
-- `<text>`: The text you want to encrypt or decrypt.
-- `<hide_length>`: Boolean value (`true` or `false`) to determine whether to hide the length of the text in the encryption.
+### Arguments
 
-Example:
+- `<command>`: Specify `e` for encryption or `d` for decryption.
+- `<password>`: The password used for encryption or decryption.
+- `<keySet>`: The set of keys used for encryption or decryption.
+- `<text>`: The text to encrypt or decrypt.
+- `[hideLength]` (optional): Specify `1` to hide the length of the text during encryption. By default, it is `0` (false).
 
+### Examples
+
+- **Encrypt Text**
 ```bash
-java -jar acrypt.jar e myPassword 1-23 4-78-91 "Hello, World!" true
-```
+java -jar acrypt.jar e "password" "1-2-3 22-4" "Hello, World!" 1
+- ```
 
-### Interactive Mode
 
-If the command-line arguments are not provided, the program will enter interactive mode. The user will be prompted to enter the necessary inputs one by one.
+This command encrypts `"Hello, World!"` with the password `"password"`, using the key set `"1-2-3 22-4"`, and hides the length of the text.
 
-### Commands
-
-- **e**: Encrypt the provided text.
-- **d**: Decrypt the provided text.
-- **q**: Quit the program (only available in interactive mode).
-
-## Implementation Details
-
-### Cipher Object
-
-The `Cipher` object contains the core encryption and decryption logic. It uses the following character sets for processing:
-
-- Uppercase letters (`A-Z`)
-- Lowercase letters (`a-z`)
-- Numbers (`0-9`)
-- Symbols (`! @ # $ % ^ & *`)
-
-The encryption and decryption processes involve shifting characters based on the password, key set, and text length. 
-
-### Hide Length Option
-
-If the `hideLength` option is enabled, the length of the text will be hidden by altering the shifts applied during encryption and decryption.
-
-## Example
-
-### Encrypting Text
-
+- **Decrypt Text**
 ```bash
-java -jar acrypt.jar e "myPassword" "1-23 4-78-91" "Hello, World!" true
+java -jar acrypt.jar d "password" "1-2-3 22-4" "EncryptedTextHere" 0
 ```
+This command decrypts `"EncryptedTextHere"` with the password `"password"`, using the key set `"1-2-3 22-4"`, and does not hide the length of the text.
 
-### Decrypting Text
-
-```bash
-java -jar acrypt.jar d "myPassword" "1-23 4-78-91" "EncryptedTextHere" true
-```
