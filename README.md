@@ -1,4 +1,4 @@
-# Acrypt Encryption/Decryption Program
+# Acrypt
 
 This Kotlin program provides a simple encryption and decryption algorithm that uses a password and a set of keys. The program can also optionally hide the length of the encrypted text to add an additional layer of security.
 
