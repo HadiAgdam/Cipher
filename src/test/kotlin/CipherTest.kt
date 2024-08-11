@@ -1,6 +1,7 @@
 package test.kotlin
 
 import main.kotlin.model.*
+import models.Key
 import models.KeySet
 import org.junit.Assert
 import org.junit.Test
@@ -86,6 +87,20 @@ class CipherTest {
         println("$text : $e : $d")
 
         Assertions.assertEquals(text, d)
+    }
+
+
+    @Test
+    fun testHideLength() {
+        val p = Password.parse("password")!!
+        val k = KeySet.parse("1-2-3")!!
+
+        val e = Cipher.encrypt("test17987987979897897", p, k, true)
+        val d = Cipher.decrypt(e, p, k, true)
+
+
+        println("$e : $d")
+
     }
 }
 

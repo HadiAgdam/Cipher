@@ -24,20 +24,29 @@ fun indexOf(char: Char): Int {
 
 object Cipher {
 
-    fun encrypt(text: String, password: Password, set: KeySet, hideLength: Boolean): String {
+    fun encrypt(text: String, password: Password, set: KeySet, hideLength: Boolean = false): String {
         var result = ""
+        var t = text
 
-        for (i in text.indices) {
-            result += if (!chars.contains(text[i]))
-                text[i]
+        if (hideLength) {
+            var s = 1
+            while (s < text.length)
+                s *= 2
+            while (t.length < s)
+                t += "*"
+        }
+
+        for (i in t.indices) {
+            result += if (!chars.contains(t[i]))
+                t[i]
             else
-                get(indexOf(text[i]) + password.getValue(i) + set.get(i) + text.length)
+                get(indexOf(t[i]) + password.getValue(i) + set.get(i) + t.length)
         }
 
         return result
     }
 
-    fun decrypt(text: String, password: Password, set: KeySet, hideLength: Boolean): String {
+    fun decrypt(text: String, password: Password, set: KeySet, hideLength: Boolean = false): String {
         var result = ""
 
         for (i in text.indices) {
