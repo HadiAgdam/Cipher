@@ -60,7 +60,7 @@ java -jar acrypt.jar <command> <password> <keySet> <text> [hideLength]
 - **Encrypt Text**
 ```bash
 java -jar acrypt.jar e "password" "1-2-3 22-4" "Hello, World!" 1
-- ```
+```
 
 
 This command encrypts `"Hello, World!"` with the password `"password"`, using the key set `"1-2-3 22-4"`, and hides the length of the text.
