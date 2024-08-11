@@ -18,9 +18,9 @@ The program encrypts and decrypts text using a combination of a password and a k
 
 You can run the program directly from the command line with the following syntax:
 
----
+```bash
 java -jar acrypt.jar <command> <password> <key_set> <text> <hide_length>
----
+```
 
 - `<command>`: The operation to perform. Use `e` for encryption and `d` for decryption.
 - `<password>`: The password to use for encryption/decryption. The password must adhere to the expected format.
@@ -30,9 +30,9 @@ java -jar acrypt.jar <command> <password> <key_set> <text> <hide_length>
 
 Example:
 
----
+```bash
 java -jar acrypt.jar e myPassword 1-23 4-78-91 "Hello, World!" true
----
+```
 
 ### Interactive Mode
 
@@ -65,13 +65,12 @@ If the `hideLength` option is enabled, the length of the text will be hidden by 
 
 ### Encrypting Text
 
----
+```bash
 java -jar acrypt.jar e "myPassword" "1-23 4-78-91" "Hello, World!" true
----
+```
 
 ### Decrypting Text
 
----
+```bash
 java -jar acrypt.jar d "myPassword" "1-23 4-78-91" "EncryptedTextHere" true
----
-ensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+```
