@@ -1,6 +1,6 @@
-# Acrypt
+# Cipher
 
-Acrypt is a command-line tool for encrypting and decrypting text using passwords and sets of keys. It also provides an option to hide the length of the text.
+Cipher is a command-line tool for encrypting and decrypting text using passwords and sets of keys. It also provides an option to hide the length of the text.
 
 
 ### Encrypt Function
@@ -37,14 +37,14 @@ When `hideLength` is set to `0` or not provided, the text is encrypted without a
 
 ## Download
 
-Download the latest release of `acrypt.jar` from the [releases](link-to-your-release) section.
+Download the latest release of `cipher.jar` from the [releases](link-to-your-release) section.
 
 ## Usage
 
-To use Acrypt, run the JAR file with the required arguments. Open a terminal or command prompt and use the following syntax:
+To use Cipher, run the JAR file with the required arguments. Open a terminal or command prompt and use the following syntax:
 
 ```bash
-java -jar acrypt.jar <command> <password> <keySet> <text> [hideLength]
+java -jar cipher.jar <command> <password> <keySet> <text> [hideLength]
 ```
 
 ### Arguments
@@ -59,7 +59,7 @@ java -jar acrypt.jar <command> <password> <keySet> <text> [hideLength]
 
 - **Encrypt Text**
 ```bash
-java -jar acrypt.jar e "password" "1-2-3 22-4" "Hello, World!" 1
+java -jar cipher.jar e "password" "1-2-3 22-4" "Hello, World!" 1
 ```
 
 
@@ -67,7 +67,7 @@ This command encrypts `"Hello, World!"` with the password `"password"`, using th
 
 - **Decrypt Text**
 ```bash
-java -jar acrypt.jar d "password" "1-2-3 22-4" "EncryptedTextHere" 0
+java -jar cipher.jar d "password" "1-2-3 22-4" "EncryptedTextHere" 0
 ```
 This command decrypts `"EncryptedTextHere"` with the password `"password"`, using the key set `"1-2-3 22-4"`, and does not hide the length of the text.
 
