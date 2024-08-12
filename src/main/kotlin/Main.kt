@@ -7,15 +7,10 @@ import java.security.MessageDigest
 // java -jar acrypt.jar <command> <password> <keySet> <text> <hideLength>
 fun main(args: Array<String>) {
 
-
-    if (args.size < 3) {
-        println("invalid arg count")
-        return
-    }
     val password = Password.parse(args[1])
     val keySet = KeySet.parse(args[2])
     val text = args[3]
-    val hideLength = args[4] == "1"
+    val hideLength = args.size > 4 && args[4] == "1"
 
     if (password == null) {
         println("invalid password")
@@ -31,7 +26,7 @@ fun main(args: Array<String>) {
             "e" -> Cipher.encrypt(text, password, keySet, hideLength)
 
 
-            "d" -> Cipher.decrypt(text, password, keySet, hideLength)
+            "d" -> Cipher.decrypt(text, password, keySet)
 
 
             else -> "invalid command"
