@@ -96,7 +96,7 @@ class CipherTest {
         val k = KeySet.parse("1-2-3")!!
 
         val e = Cipher.encrypt("test17987987979897897", p, k, true)
-        val d = Cipher.decrypt(e, p, k, true)
+        val d = Cipher.decrypt(e, p, k)
 
 
         println("$e : $d")
