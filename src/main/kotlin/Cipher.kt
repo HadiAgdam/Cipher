@@ -3,8 +3,10 @@ import models.KeySet
 
 private val upperList = ('A'..'Z').toList()
 private val lowerList = ('a'..'z').toList()
+private val numberList = ('0'..'9').toList()
+private val symbols = listOf('@', '#', '^', '&', '*')
 
-private val chars = upperList + lowerList
+private val chars = upperList + lowerList + numberList + symbols
 
 
 fun get(index: Int): Char {
@@ -38,7 +40,7 @@ object Cipher {
             result += if (!chars.contains(t[i]))
                 t[i]
             else
-                get(indexOf(t[i]) + password.getValue(i) + set.get(i))
+                get(indexOf(t[i]) + password.getValue(i) + set.get(i) + t.length)
         }
 
         return result
@@ -51,7 +53,7 @@ object Cipher {
             result += if (!chars.contains(text[i]))
                 text[i]
             else
-                get(indexOf(text[i]) - password.getValue(i) - set.get(i))
+                get(indexOf(text[i]) - password.getValue(i) - set.get(i) - text.length)
         }
 
         return result
